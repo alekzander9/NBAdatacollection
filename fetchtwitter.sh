@@ -1,0 +1,1 @@
+curl --request GET --url 'https://api.twitter.com/1.1/search/tweets.json?q=New_York_Knicks&result_type=popular' --header 'authorization: Bearer AAAAAAAAAAAAAAAAAAAAADoG9wAAAAAAcADZ%2BHIk%2FKjnUD%2FxMEqDT47WKhA%3DgFcXXScro6K8L7s3XUNTm7dbj90ITubSJKa4NYRlmourZaDAw1'
