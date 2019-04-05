@@ -13,42 +13,50 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
+# TODO fetch teams from other file
+# TODO fetch teams screen_name
 teams = [
-    "nyknicks",
-    "Los Angeles Lakers",
-    "Golden State Warriors",
-    "Chicago Bulls",
-    "Boston Celtics",
-    "Brooklyn Nets",
-    "Houston Rockets",
-    "Dallas Mavericks",
-    "Los Angeles Clippers",
-    "Miami Heat",
-    "Toronto Raptors",
-    "Philadelphia 76ers",
-    "San Antonio Spurs",
-    "Portland Trail Blazers",
-    "Sacramento Kings",
-    "Washington Wizards",
-    "Phoenix Suns",
-    "Oklahoma City Thunder",
-    "Utah Jazz",
-    "Indiana Pacers",
-    "Denver Nuggets",
-    "Milwaukee Bucks",
-    "Orlando Magic",
-    "Atlanta Hawks",
-    "Cleveland Cavaliers",
-    "Detroit Pistons",
-    "Minnesota Timberwolves",
-    "Charlotte Hornets",
-    "New Orleans Pelicans",
-    "Memphis Grizzlies",
+    # "@nyknicks",
+    # "@Lakers",
+    # "@warriors",
+    "@chicagobulls",
+    "@celtics",
+    "@BrooklynNets",
+    "@HoustonRockets",
+    "@dallasmavs",
+    # "@LAClippers",
+    # "@MiamiHEAT",
+    # "@Raptors",
+    # "@sixers",
+    # "@spurs",
+    # "@trailblazers",
+    # "@SacramentoKings",
+    # "@WashWizards",
+    # "@Suns",
+    # "@okcthunder",
+    # "@utahjazz",
+    # "@Pacers",
+    # "@nuggets",
+    # "@Bucks",
+    # "@OrlandoMagic",
+    # "@ATLHawks",
+    # "@cavs",
+    # "@DetroitPistons",
+    # "@Timberwolves",
+    # "@hornets",
+    # "@PelicansNBA",
+    # "@memgrizz"
 ]
 
 for team in teams:
-    results = api.search_users(team, count=5)
-    print("Team : {}, Account : {}, Followers : {}, Verified : {}".format(results[0]._json["name"], results[0]._json["screen_name"], results[0]._json["followers_count"], results[0]._json["verified"]))
-
-# nyknicks_followers = api.get_user(screen_name="nyknicks")
-# print(nyknicks_followers._json["followers_count"])
+    query = f"{team} -filter:retweets"
+    results = api.search(q="chicagobulls -filter:retweets", count=1)
+    print(f"Team: {team}")
+    print(results)
+    print(results[0]._json["text"])
+    with open("nbatweet.txt", "a+") as f:
+        for r in results:
+            f.write(json.dumps(r._json))
+            print(r._json)
+        f.close()
+    print(results)
