@@ -87,8 +87,8 @@ for p_info in players_salary_dataset[2018]:
 
 for team in teams:
     for year in years:
-        revenues = revenues_dataset[year][team] if year in revenues_dataset else None
-        attendance = attendance_dataset[year][team] if year in attendance_dataset else None
+        revenues = revenues_dataset[year][team] if year in revenues_dataset and team in revenues_dataset[year] else None
+        attendance = attendance_dataset[year][team] if year in attendance_dataset and team in attendance_dataset[year] else None
         team_data = {}
         if revenues:
             team_data = {**revenues}
@@ -129,6 +129,9 @@ for team in teams:
         row_str = ""
         for header in teams_dataset_headers:  # Ensures matching feature order with header
             if header == 'team':
+                continue
+            if header not in team_data:
+                print(f"Error - Team: {team}, Header: {header}, Year: {year}")
                 continue
             row_str = row_str + ";" + str(team_data[header])
         t_dataset_file.write(team + row_str + "\n")
