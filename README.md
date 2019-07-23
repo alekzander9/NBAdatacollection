@@ -1,4 +1,6 @@
-# Tech-Insight Interview
+# NBA data collection
+
+This project is an example of data gathering from multiple sources through web scraping. Datasets are generated from different websites and consolidated into two datasets described shown below. The project contains multiple scripts to gather the data, remove missing data and save the data in a column format (CSV). Finally, a script uploads the resulting dataset into a BigTable instance on GCP.
 
 ## Requirements
 - Python 3.6+
